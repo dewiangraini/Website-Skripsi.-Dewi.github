@@ -54,7 +54,7 @@ fileInput.addEventListener('change', function(e) {
                 movable: true,      //gambar bisa digeser
                 scalable: true,
                 cropBoxResizable: true,     //ubah ukuran crop secara manual
-                cropBoxMovable: true,
+                cropBoxMovable: false,
             });
 
             // Tampilkan tombol konversi
