@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Periksa Label Produk Berdasarkan Komposisi</title>
+    
+    <!-- Bootstrap CSS / Tampilan responsif-->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome / Library icon-->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="./styles/index.css">
+    
+    <!-- NEW! Cropper.js CSS / Penataan tampilan crop inputan-->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css" rel="stylesheet" />
+    
+    <!-- NEW! Cropper.js JS / Fitur croping inputan-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js"></script>
+</head>
+
+<body>
+    <!-- Bagian Unggah -->
+    <div id="uploadSection" class="section">
+        <div class="header">
+            <h2>SELAMAT DATANG DI WEBSITE<br>PERIKSA LABEL PRODUK<br>BERDASARKAN KOMPOSISI</h2>
+        </div>
+        
+        <div class="content-box" id="imagePreviewBox">
+            <img src="https://cdn-icons-png.flaticon.com/512/126/126477.png" alt="Upload Image" class="image-placeholder">
+        </div>
+        <div class="w-full d-flex justify-content-end">
+            <button class="btn-custom" id="uploadBtn" style="margin: 0;">Masukkan file *.jpg, *.png, *jpeg</button>
+        </div>
+        <input type="file" id="fileInput" accept="image/*" style="display: none;">
+        
+        <div class="hidden mt-3" id="textResultBox">
+            <h4 class="text-center">Tampilan konversi file gambar ke text</h4>
+            <div class="content-box">
+                <div id="extractedText">Hasil konversi gambar ke teks akan muncul di sini</div>
+            </div>
+        </div>
+        
+        <div class="progress">
+            <div class="progress-bar" role="progressbar" style="width: 0%"></div>
+        </div>
+
+        <div class="w-full d-flex justify-content-end">
+            <button class="btn-custom hidden" id="convertBtn" style="margin-left: 0;margin-right: 0;">Konversi file to teks</button>
+        </div>
+        
+        <button class="btn-custom hidden" id="identifyBtn">Identifikasi label berdasarkan konversi gambar</button>
+    </div>
+    
+    <!-- Bagian Hasil -->
+    <div id="resultSection" class="section hidden">
+        <div class="header">
+            <h2>Berdasarkan komposisi yang ada pada<br>produk tersebut terklasifikasi pada<br>pengkategorian label yaitu:</h2>
+        </div>
+        
+        <div class="result-text">
+            Label = <span id="resultLabel">Halal</span>
+        </div>
+        
+        <div class="content-box" id="identifyRslt" style="display:block;"></div>
+        <div class="w-full d-flex justify-content-end">
+            <button class="btn-custom" id="homeBtn" style="margin-left: 0;margin-right: 0;">Kembali ke home</button>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <!-- Tesseract.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tesseract.js/4.1.1/tesseract.min.js"></script>
+    <!--SweetAlert2 untuk warning inputan yg diluar ketentuan-->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
+    <script>
+        // Definisi kata kunci untuk klasifikasi
+        const nonhalalKeywords = [
+            'babi', 'pork', 'alkohol', 'alcohol', 'wine', 'bir', 'beer', 
+            'arak', 'liquor', 'darah', 'blood', 'bangkai', 'khamr', 'blood',
+            'pig', 'ham', 'emulsifier e441', 'ethanol', 'rum'
+        ];
+
+        const syubhatKeywords = [
+            'gelatin', 'e471', 'lesitin', 'penyedap', 'perisa',
+            'flavor enhancer', 'shortening', 'emulsifier', 'softgel'
+        ];
+    </script>
+    <script type="text/javascript" src="./scripts/index.js"></script>
+</body>
+</html>
