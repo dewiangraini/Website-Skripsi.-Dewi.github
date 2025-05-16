@@ -51,7 +51,7 @@ fileInput.addEventListener('change', function(e) {
                 viewMode: 1,
                 autoCropArea: 0.8,
                 zoomable: true,
-                movable: true,      //gambar bisa digeser
+                movable: false,      //gambar bisa digeser
                 scalable: true,
                 cropBoxResizable: true,     //ubah ukuran crop secara manual
                 cropBoxMovable: false,
