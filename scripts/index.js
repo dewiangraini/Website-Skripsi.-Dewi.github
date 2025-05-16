@@ -50,7 +50,7 @@ fileInput.addEventListener('change', function(e) {
             cropper = new Cropper(img, {
                 viewMode: 1,
                 autoCropArea: 0.8,
-                zoomable: false,
+                zoomable: true,
                 movable: true,      //gambar bisa digeser
                 scalable: true,
                 cropBoxResizable: true,     //ubah ukuran crop secara manual
