@@ -55,3 +55,10 @@ body {
     border-radius: 2px;
     font-weight: bold;
 }
+.footer {
+    text-align: center;
+    margin-top: 100px;
+    background-color: #adf3ab;
+    font-size: 20px;
+    color: 000;
+}
