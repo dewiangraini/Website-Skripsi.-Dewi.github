@@ -50,11 +50,11 @@ fileInput.addEventListener('change', function(e) {
             cropper = new Cropper(img, {
                 viewMode: 1,
                 autoCropArea: 0.8,
-                zoomable: true,
-                movable: false,      //gambar bisa digeser
+                zoomable: false,
+                movable: true,      //gambar bisa digeser
                 scalable: true,
                 cropBoxResizable: true,     //ubah ukuran crop secara manual
-                cropBoxMovable: false,
+                cropBoxMovable: true,
             });
 
             // Tampilkan tombol konversi
@@ -100,14 +100,14 @@ convertBtn.addEventListener('click', function() {
                 return Swal.fire({icon:'error',text:'Tidak ada teks terdeteksi! Mohon coba kembali dengan foto yang berbeda',title:'Error!'});
 
             text = text.toLowerCase();
-            if(text.indexOf('komposisi') === -1 && text.indexOf('composition') === -1){
+            if(text.indexOf('komposisi') === -1 && text.indexOf('ingredients') === -1){
                 return Swal.fire({icon:'error',text:'Teks komposisi tidak terdeteksi! Mohon coba kembali dengan foto yang berbeda',title:'Error!'});
             }
 
             let startIndex = text.indexOf('komposisi');
             
             if(startIndex === -1){
-                startIndex = text.indexOf('composition');
+                startIndex = text.indexOf('ingredients');
             }
 
             text = text.slice(startIndex);
